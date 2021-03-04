@@ -1,0 +1,54 @@
+<div class="col-md-4" style="float: right;">
+    <label >Search By Name:</label>
+    <input type="text" class="form-control"  (keyup)="filterByText($event.target.value)"  placeholder="Enter Employee Name">     
+    </div>
+<div class="container">
+    <h2>EMPLOYEE DETAILS</h2>
+          
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Department</th>
+          <th>Joining Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr  *ngFor="let empDetails of candidate_data ">
+          <td>{{empDetails.id}}</td>
+          <td>{{empDetails.name}}</td>
+          <td>{{empDetails.department}}</td>
+          <td>{{empDetails.joining_date | date: 'dd/MM/yyyy'}}</td>
+        </tr>
+      </tbody>
+    </table>
+    
+
+     <div class="form-group col-md-12">
+         <div class="row" >
+             <div class="col-6">
+        <button class="btn btn-info testbtnmargin" type="button" (click)="sortByName()" [value]="order ? 'Asc' : ' Desc'">Sort By Name</button>&nbsp; &nbsp;
+        </div>
+        <div class="col-6">
+        <button class="btn btn-info testbtnmargin" type="button" (click)="sortByJoiningDate()">Sort By Joining Date</button>
+        </div> 
+    </div>
+       
+
+     <div class="row" style="margin: 10px;">
+        <button class="testbtn" mat-raised-button color="primary" (click)="deleteItem()">Remove all candidates from 'Development' department.</button>
+     </div>
+
+     <div class="row " style="margin: 10px;">
+    <button class="testbtn" mat-raised-button color="accent" (click)="workExp()">Find all candidates with experience more than 2 years</button>
+      </div>
+    <div class="row " style="margin: 10px;">
+    <button class="btn btn-success testbtn" (click)="getDistict()">Get distinct departments and count of candidates in each</button>
+    <div *ngFor="let data of departmentsCount | keyvalue">
+            <p>{{data.key}} - {{data.value}}</p>
+    </div>
+    </div>
+    </div>
+      
+</div>
